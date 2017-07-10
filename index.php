@@ -1,63 +1,43 @@
+<?php
+// Multiple recipients
+$to = 'sriramv63@gmail.com'; // note the comma
+
+// Subject
+$subject = 'Birthday Reminders for August';
+
+// Message
+$message = '
 <html>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+  <title>Birthday Reminders for August</title>
+</head>
+<body>
+  <p>Here are the birthdays upcoming in August!</p>
+  <table border=1,solid,black>
+    <tr>
+      <th>Person</th><th>Day</th><th>Month</th><th>Year</th>
+    </tr>
+    <tr>
+      <td>Johny</td><td>10th</td><td>August</td><td>1970</td>
+    </tr>
+    <tr>
+      <td>Sally</td><td>17th</td><td>August</td><td>1973</td>
+    </tr>
+  </table>
+</body>
+</html>
+';
 
-<div class="container">
+// To send HTML mail, the Content-type header must be set
+$headers[] = 'MIME-Version: 1.0';
+$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
-    <form class="well form-horizontal" action="db.php" method="post"  id="contact_form">
-<fieldset>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-FirstName:<input type="text" name="first_name" id="first_name"/>
-</div>
-</div>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-LastName:<input type="text" name="last_name" id="first_name"/>
-</div>
-</div>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-Email:<input type="text" name="email" id="first_name"/>
-</div>
-</div>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-Phone:<input type="text" name="phone" id="first_name"/>
-</div>
-</div>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-Address:<input type="text" name="address" id="first_name"/>
-</div>
-</div>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-City:<input type="text" name="city" id="first_name"/>
-</div>
-</div>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-State:<input type="text" name="state" id="first_name"/>
-</div>
-</div>
-<div class="row">
-<div class="col-md-offset-5 col-md-4">
-Zip:<input type="text" name="zip" id="first_name"/>
-</div>
-</div>
+// Additional headers
+//$headers[] = 'To: Mary <mary@example.com>, Kelly <kelly@example.com>';
+$headers[] = 'From: Birthday Reminder <birthday@example.com>';
+//$headers[] = 'Cc: birthdayarchive@example.com';
+//$headers[] = 'Bcc: birthdaycheck@example.com';
 
-
-
-<div class="form-group">
-  <label class="col-md-6 control-label"></label>
-  <div class="col-md-6">
-    <button type="submit" class="btn btn-warning" >Send</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-</div>
-
-
-    </div><!-- /.container -->
+// Mail it
+mail($to, $subject, $message, implode("\r\n", $headers));
+?>
